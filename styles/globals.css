@@ -2,8 +2,13 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, Poppins, sans-serif;
+    --converse-color: #00c8e8;
+    --secondary-screaming-color: #00f44f;
+    --background-color: #14142b;
+  
+    --basic-font-size: 18px;
+    background-color: var(--background-color);
 }
 
 a {
@@ -20,7 +25,11 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    color: #fff;
+      background: var(--background-color)
   }
+}
+
+a {
+  color: var(--converse-color);
 }
