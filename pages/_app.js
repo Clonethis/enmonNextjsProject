@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import { store } from "../context/store";
+import store from "../context/store";
 import "../styles/globals.css";
 
 import "../styles/forms.css";

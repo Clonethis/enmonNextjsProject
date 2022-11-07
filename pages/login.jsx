@@ -1,35 +1,26 @@
+import Link from "next/link";
 import { useDispatch } from "react-redux";
 import "../context/content-fetcher";
 import { getToken } from "../context/states/setTokenReducer";
-import { store } from "../context/store";
-
+import AuthenticationButton from "./components/AuthenticationButton";
+// import store from "../context/store";
 export default function Login() {
   const dispatch = useDispatch();
   const email = "homework@enmon.tech";
   const password = "GHrSyhF5m6M8G5PT";
-  console.log(store);
+
   const handleClick = () => {
-    // dispatch({ type: "login/LogIn", payload: "nice" });
-
-    if (state.login.loggedIn) {
-      console.log("Logged in");
-      console.log(state);
-    } else {
-      console.log("Logged out");
-      console.log(state);
-    }
+    dispatch({ type: "login/LogIn", payload: "nice" });
   };
-  // return response.data.jwt;
-
   async function handleLogin(e) {
     e.preventDefault();
+    console.log(e);
     const notValidClass = "wrong";
 
     const email = document.querySelector("form .email");
     const password = document.querySelector("form .password");
 
     if (isValidEmail(email.value)) {
-      console.log(email.value, password.value);
       const saveNewTokenThunk = getToken(email.value, password.value);
       dispatch(saveNewTokenThunk);
       email.value = "";
@@ -38,11 +29,11 @@ export default function Login() {
       email.classList = [`email ${notValidClass}`];
       email.insertAdjacentHTML(
         "afterend",
-        `<p class="${notValidClass} notice">Please give us valid email</p>`
+        `<p class="${notValidClass} notice">Try valid email</p>`
       );
-      console.log("NOT valid emali");
     }
   }
+
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
   }
@@ -64,10 +55,7 @@ export default function Login() {
   return (
     <main>
       <div className="login">
-        <form
-          onClick={(element) => removeWrong(element)}
-          onSubmit={handleLogin}
-        >
+        <form onClick={(element) => removeWrong(element)}>
           <div className="row">
             <label htmlFor="last2">Email</label>
             <input
@@ -89,8 +77,12 @@ export default function Login() {
             ></input>
           </div>
           <div className="row">
-            <button className="submit-button" type="submit">
-              Submit
+            <button
+              className="submit-button"
+              onClick={handleLogin}
+              type="submit"
+            >
+              <Link href="/user-stats">Submit</Link>
             </button>
           </div>
         </form>
@@ -98,6 +90,7 @@ export default function Login() {
       <div className="login" onClick={handleClick}>
         Fetch Token
       </div>
+      <AuthenticationButton />
     </main>
   );
 }
