@@ -1,10 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  status: "idle",
-  data: {},
-};
-
 const todosSlice = createSlice({
   name: "todos",
   initialState,

@@ -1,12 +1,24 @@
 import axios from "axios";
-import { store } from "../store";
-import { initialState } from "./appState";
+import initialState from "./appState";
+
 export default function setTokenReducer(state = initialState, action) {
-  console.log("in reducer token", state, action);
-  if (action.type == "set/UserJsxToken") {
+  if (action.type === "set/UserJsxToken") {
     return {
       ...state,
-      token: action.payload.jwt,
+      loggedIn: true,
+      token: action.payload,
+    };
+  }
+
+  return state;
+}
+
+export function removeToken(state = initialState, action) {
+  if (action.type === "remove/UserJsxToken") {
+    return {
+      ...state,
+      loggedIn: false,
+      token: "",
     };
   }
 
@@ -15,22 +27,18 @@ export default function setTokenReducer(state = initialState, action) {
 
 export function getToken(email, password) {
   console.log("getToken:", email, password);
-  return async function saveNewTokenThunk(dispatch, getState) {
+  return async function saveNewTokenThunk(dispatch) {
     const initialCredentials = { email, password };
-    if (store.getState().login) {
-      const response = await axios
-        .post("https://tools.dev.enmon.tech/api/auth/local", {
-          identifier: initialCredentials.email,
-          password: initialCredentials.password,
-        })
-        .then(
-          (response) => {
-            dispatch({ type: "set/UserJsxToken", payload: response.data });
-          },
-          (reason) => {
-            console.log(reason);
-          }
-        );
-    }
+
+    // if (getState) {
+    const response = await axios
+      .post("https://tools.dev.enmon.tech/api/auth/local", {
+        identifier: initialCredentials.email,
+        password: initialCredentials.password,
+      })
+      .then((response) => {
+        dispatch({ type: "set/UserJsxToken", payload: response.data.jwt });
+      });
+    // }
   };
 }

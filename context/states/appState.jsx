@@ -1,5 +1,7 @@
-export const initialState = {
-  token: "",
-  loggedIn: false,
+const initialState = {
   meters: [""],
+  loggedIn: false,
+  token: " ",
 };
+
+export default initialState;
