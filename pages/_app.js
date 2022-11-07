@@ -1,8 +1,9 @@
 import { Provider } from "react-redux";
-import store from "../context/store";
+import { store } from "../context/store";
 import "../styles/globals.css";
 
-// import "../styles/links.css";
+import "../styles/forms.css";
+import "../styles/links.css";
 // TODO1: Create a production-ready React application that will display a list of meters after successful login.
 // TODO2: Fetch data from
 // TODO2:
