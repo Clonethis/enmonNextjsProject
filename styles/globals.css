@@ -3,12 +3,17 @@ body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, Poppins, sans-serif;
-    --converse-color: #00c8e8;
+  --converse-color: #00c8e8;
     --secondary-screaming-color: #00f44f;
     --background-color: #14142b;
-  
+  --butons-padding: 0.4rem 1rem;
     --basic-font-size: 18px;
-    background-color: var(--background-color);
+  --basic-border-radius: 7px;
+  
+  }
+  
+  body {
+  background-color: var(--background-color);
 }
 
 a {
